@@ -1,0 +1,32 @@
+class Solution {
+    public int romanToInt(String s) {
+
+        int[] values = new int[26];
+
+        values['I' - 'A'] = 1;
+        values['V' - 'A'] = 5;
+        values['X' - 'A'] = 10;
+        values['L' - 'A'] = 50;
+        values['C' - 'A'] = 100;
+        values['D' - 'A'] = 500;
+        values['M' - 'A'] = 1000;
+
+        int tot = 0;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+
+            int cur = values[s.charAt(i) - 'A'];
+            int next = values[s.charAt(i + 1) - 'A'];
+
+            if (cur < next) {
+                tot -= cur;
+            } else {
+                tot += cur;
+            }
+        }
+
+        tot += values[s.charAt(s.length() - 1) - 'A'];
+
+        return tot;
+    }
+}
